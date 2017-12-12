@@ -27,7 +27,12 @@ const Menu = createReactClass({
     level: PropTypes.number,
     selectable: PropTypes.bool,
     multiple: PropTypes.bool,
+    popupPlacements: PropTypes.object,
     children: PropTypes.any,
+  },
+
+  childContextTypes: {
+    popupPlacements: PropTypes.object,
   },
 
   mixins: [MenuMixin],
@@ -62,6 +67,12 @@ const Menu = createReactClass({
     return {
       selectedKeys,
       openKeys,
+    };
+  },
+
+  getChildContext() {
+    return {
+      popupPlacements: this.props.popupPlacements,
     };
   },
 
